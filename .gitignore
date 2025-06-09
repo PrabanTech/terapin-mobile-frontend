@@ -73,3 +73,9 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+
+# Environment and secret keys
+*.env
+
+# Development page
+MobileApp/Components/Pages/Dev.razor
