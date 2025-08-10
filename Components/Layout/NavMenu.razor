@@ -1,22 +1,21 @@
-﻿@code {
-    private string activeTab = "home";
+﻿@inject NavigationManager Navigation
 
-    void SetActive(string tab)
+@code {
+    string GetIconClass(string tab)
     {
-        activeTab = tab;
+        var current = Navigation.ToBaseRelativePath(Navigation.Uri).ToLower();
+        return current == tab ? "nav-icon active" : "nav-icon inactive";
     }
-
-    string GetIconClass(string tab) => activeTab == tab ? "nav-icon active" : "nav-icon inactive";
 }
 
 <div class="bottom-nav">
-    <button class="nav-button" @onclick='() => SetActive("home")'>
+    <button class="nav-button" @onclick='() => Navigation.NavigateTo("")'>
         <img src="images/home.svg" class="@GetIconClass("home")" alt="Home" />
     </button>
-    <button class="nav-button" @onclick='() => SetActive("report")'>
+    <button class="nav-button" @onclick='() => Navigation.NavigateTo("report")'>
         <img src="images/report.svg" class="@GetIconClass("report")" alt="Report" />
     </button>
-    <button class="nav-button" @onclick='() => SetActive("profile")'>
+    <button class="nav-button" @onclick='() => Navigation.NavigateTo("profile")'>
         <img src="images/profile.svg" class="@GetIconClass("profile")" alt="Profile" />
     </button>
 </div>

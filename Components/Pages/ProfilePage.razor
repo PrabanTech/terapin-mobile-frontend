@@ -1,0 +1,21 @@
+﻿@page "/profile"
+
+<div class="profile-container">
+    <img src="images/default-profile-image.png" alt="Profile Image" class="profile-image" />
+    <h2 class="profile-name">Bu Fulanah</h2>
+    <p class="profile-phone">+62 xxx xxxx xxxx</p>
+
+    <button class="edit-button bg-granite-gray text-anti-flash-white" @onclick="EditProfile">
+        Edit Profile
+    </button>
+
+</div>
+
+@code {
+    [Inject] NavigationManager Navigation { get; set; } = null!;
+
+    void EditProfile()
+    {
+        Navigation.NavigateTo("/edit-profile");
+    }
+}
