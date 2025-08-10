@@ -1,27 +1,22 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Frontend</a>
-    </div>
-</div>
+﻿@code {
+    private string activeTab = "home";
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+    void SetActive(string tab)
+    {
+        activeTab = tab;
+    }
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
+    string GetIconClass(string tab) => activeTab == tab ? "nav-icon active" : "nav-icon inactive";
+}
+
+<div class="bottom-nav">
+    <button class="nav-button" @onclick='() => SetActive("home")'>
+        <img src="images/home.svg" class="@GetIconClass("home")" alt="Home" />
+    </button>
+    <button class="nav-button" @onclick='() => SetActive("report")'>
+        <img src="images/report.svg" class="@GetIconClass("report")" alt="Report" />
+    </button>
+    <button class="nav-button" @onclick='() => SetActive("profile")'>
+        <img src="images/profile.svg" class="@GetIconClass("profile")" alt="Profile" />
+    </button>
 </div>
