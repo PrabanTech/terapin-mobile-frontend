@@ -1,0 +1,65 @@
+﻿@page "/report"
+
+<div class="report-container">
+    <h1 class="report-title">Rapor Perkembangan Anak</h1>
+
+    <section class="report-section">
+        <h2>📋 <strong>Data Anak</strong></h2>
+        <ul>
+            <li>👤 Nama Anak: Fulan</li>
+            <li>🎂 Usia: 3 Tahun</li>
+            <li>🗓️ Tanggal Mulai Terapi: 25 April 2025</li>
+            <li>👪 Caregiver: Bu Fulanah</li>
+        </ul>
+    </section>
+
+    <section class="report-section">
+        <h2>🧠 <strong>Ringkasan Hasil Screening</strong></h2>
+        <p>Area Terapi yang Perlu Difokuskan:</p>
+        <ul>
+            <li>✅ Gangguan Bahasa</li>
+            <li>✅ Produksi Bicara</li>
+            <li>✅ Suara & Resonansi</li>
+            <li>✅ Disfluensi</li>
+            <li>✅ Gangguan Literasi</li>
+            <li>✅ Makan dan Menelan</li>
+        </ul>
+    </section>
+
+    <section class="report-section">
+        <h2>📈 <strong>Leveling Progress per Modul</strong></h2>
+        @foreach (var modul in progressModules)
+        {
+            <div class="progress-item">
+                <p>@modul.Name: @modul.Percentage% - @modul.Status</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:@modul.Percentage%"></div>
+                </div>
+            </div>
+        }
+    </section>
+
+    <section class="report-section">
+        <h2>👪 <strong>Saran untuk Caregiver</strong></h2>
+        <p>Lanjutkan dukungan emosional saat anak menghadapi tantangan dalam terapi.</p>
+    </section>
+</div>
+
+@code {
+    class ProgressModule
+    {
+        public string Name { get; set; } = "";
+        public int Percentage { get; set; }
+        public string Status { get; set; } = "";
+    }
+
+    List<ProgressModule> progressModules = new()
+    {
+        new() { Name = "Gangguan Bahasa", Percentage = 70, Status = "Sedang Berkembang" },
+        new() { Name = "Produksi Bicara", Percentage = 60, Status = "Butuh Perhatian" },
+        new() { Name = "Suara & Resonansi", Percentage = 75, Status = "Baik" },
+        new() { Name = "Disfluensi", Percentage = 80, Status = "Sangat Baik" },
+        new() { Name = "Literasi", Percentage = 55, Status = "Perlu Latihan Tambahan" },
+        new() { Name = "Makan dan Menelan", Percentage = 85, Status = "Sangat Baik" }
+    };
+}
